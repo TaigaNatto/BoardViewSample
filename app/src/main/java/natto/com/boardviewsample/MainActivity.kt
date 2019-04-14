@@ -29,9 +29,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        for (i in 0..100) {
-            for (j in 0..100) {
-                create((i * 100).toFloat(), (j * 100).toFloat(), "$i,$j")
+        for (i in 0..10) {
+            for (j in 0..10) {
+                create((i * 500).toFloat(), (j * 500).toFloat(), "$i,$j")
             }
         }
 
@@ -61,9 +61,9 @@ class MainActivity : AppCompatActivity() {
                 Log.d("POINT_LOG", "x:${it.view.x} , y:${it.view.y}")
             }
             if (it.view.x < 1500 &&
-                it.view.x > -100f &&
+                it.view.x > -500f &&
                 it.view.y < 3000 &&
-                it.view.y > -100f
+                it.view.y > -500f
             ) {
                 it.isVisible = true
                 it.view.visibility = View.VISIBLE
@@ -81,13 +81,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun create(x: Float, y: Float, text: String) {
-        val textView = TextView(this)
-        textView.text = text
-        textView.translationX = x
-        textView.translationY = y
-        frame.addView(textView)
+        val blockView = BlockView(this)
+        blockView.findViewById<TextView>(R.id.block_text).text = text
+        blockView.translationX = x
+        blockView.translationY = y
+        frame.addView(blockView)
 
         val block = Block(text, Point(x, y))
-        list.add(BlockEntity(block, textView, true))
+        list.add(BlockEntity(block, blockView, true))
     }
 }
